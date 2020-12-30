@@ -290,3 +290,6 @@ __pycache__/
 build/
 /WebApplication/WebApplication/app/*.js
 /WebApplication/WebApplication/app/*.js.map
+Examples/.DS_Store
+Examples/SignalR/.DS_Store
+.DS_Store

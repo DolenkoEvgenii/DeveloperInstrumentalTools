@@ -11,7 +11,7 @@ namespace UnitTests {
         public void SubtractDaysOfYear() {
             var startDate = new DateTime(2020, 11, 11);
             var endDate = new DateTime(2019, 4, 25);
-            var daysToSubtract = -200
+            var daysToSubtract = -200;
 
             mDayShiftService
            		.GetShiftBusinessDay(startDate, daysToSubtract)
@@ -23,7 +23,7 @@ namespace UnitTests {
         public void AddDaysOfYear() {
             var startDate = new DateTime(2019, 8, 20);
             var endDate = new DateTime(2020, 2, 14);
- 			var daysToAdd = 178
+            var daysToAdd = 178;
 
             mDayShiftService
             	.GetShiftBusinessDay(startDate, daysToAdd)
