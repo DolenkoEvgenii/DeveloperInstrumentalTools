@@ -18,11 +18,11 @@ services:
       - POSTGRES_MULTIPLE_DATABASES=exampledb
     networks:
       - internal
-
+        
   app:
-    container_name: 'car_models.app'
+    container_name: 'car_model.app'
     build:
-      context: ../
+      context: ./
       dockerfile: app.dockerfile
     ports:
       - "5000:5000"

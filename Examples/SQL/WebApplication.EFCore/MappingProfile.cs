@@ -7,13 +7,16 @@ namespace WebApplication.EFCore
     {
         public MappingProfile()
         {
-            this.CreateMap<WeatherEntity, WeatherForecast>()
+            this.CreateMap<CarModelEntity, CarModelDto>()
                 .ForMember(
-                    dst => dst.Summary, 
-                    opt => opt.MapFrom(src => src.Summary.Code))
+                    dst => dst.Car, 
+                    opt => opt.MapFrom(src => src.Car.Name))
                 .ForMember(
-                    dst => dst.TemperatureC,
-                    opt => opt.MapFrom(src => src.Temperature));
+                    dst => dst.TypeEngine, 
+                    opt => opt.MapFrom(src => src.TypeEngine))
+                .ForMember(
+                    dst => dst.Name,
+                    opt => opt.MapFrom(src => src.Name));
         }
     }
 }

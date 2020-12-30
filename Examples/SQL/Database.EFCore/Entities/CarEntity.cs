@@ -1,11 +1,13 @@
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database.EFCore.Entities
 {
-    public class SummaryEntity
+    [Table("Car")]
+    public class CarEntity
     {
         public int Id { get; set; }
-        
-        public string Code { get; set; }
+
+        public String Name { get; set; }
     }
 }

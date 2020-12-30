@@ -7,8 +7,8 @@ namespace Database.EFCore
 {
     public partial class ExampleContext : DbContext
     {
-        public DbSet<SummaryEntity> Summaries { get; set; }
-        public DbSet<WeatherEntity> Weathers { get; set; }
+        public DbSet<CarModelEntity> CarModels { get; set; }
+        public DbSet<CarEntity> Cars { get; set; }
         
         public ExampleContext()
         {
@@ -31,58 +31,65 @@ namespace Database.EFCore
         {
             OnModelCreatingPartial(modelBuilder);
 
-            modelBuilder.Entity<WeatherEntity>(entity =>
+            modelBuilder.Entity<CarEntity>(entity =>
             {
-                entity.ToTable("Weather");
+                entity.ToTable("car");
                 entity.HasKey(x => x.Id);
                 entity.Property(x => x.Id).UseIdentityColumn();
-                entity.HasOne(d => d.Summary);
             });
 
-            modelBuilder.Entity<SummaryEntity>(entity =>
+            modelBuilder.Entity<CarModelEntity>(entity =>
             {
-                entity.ToTable("Summary");
+                entity.ToTable("car_model");
                 entity.HasKey(x => x.Id);
                 entity.Property(x => x.Id).UseIdentityColumn();
+                entity.HasOne(d => d.Car);
             });
             
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 1, Code = "Freezing" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 2, Code = "Bracing" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 3, Code = "Chilly" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 4, Code = "Cool" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 5, Code = "Mild" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 6, Code = "Warm" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 7, Code = "Balmy" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 8, Code = "Hot" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 9, Code = "Sweltering" });
-            modelBuilder.Entity<SummaryEntity>().HasData(new SummaryEntity { Id = 10, Code = "Scorching" });
-            
-            modelBuilder.Entity<WeatherEntity>().HasData(new
+            modelBuilder.Entity<CarEntity>().HasData(new CarEntity { Id = 1, Name = "BMW" });
+            modelBuilder.Entity<CarEntity>().HasData(new CarEntity { Id = 2, Name = "Audi" });
+            modelBuilder.Entity<CarEntity>().HasData(new CarEntity { Id = 3, Name = "Mercedes" });
+
+            modelBuilder.Entity<CarModelEntity>().HasData(new
             {
                 Id = 1, 
-                TimeStamp = new DateTime(2020, 1, 1),
-                Temperature = -1.3m,
-                SummaryId = 3
+                Name = "M5",
+                TypeEngine = "Petrol",
+                CarId = 1
             });
             
-            modelBuilder.Entity<WeatherEntity>().HasData(new
+            modelBuilder.Entity<CarModelEntity>().HasData(new
             {
                 Id = 2, 
-                TimeStamp = new DateTime(2020, 1, 2),
-                Temperature = 5.1m,
-                SummaryId = 5
-            });
+                Name = "RS7",
+                TypeEngine = "Petrol",
+                CarId = 2
+            }); 
             
-            modelBuilder.Entity<WeatherEntity>().HasData(new
+            modelBuilder.Entity<CarModelEntity>().HasData(new
             {
                 Id = 3, 
-                TimeStamp = new DateTime(2020, 1, 3),
-                Temperature = -10m,
-                SummaryId = 1
+                Name = "E63",
+                TypeEngine = "Petrol",
+                CarId = 3
             });
             
-            //modelBuilder.Entity<WeatherEntity>().OwnsOne(p => p.Summary).HasData(new { Date = new DateTime(2020, 1, 1), Temperature = -1, Code = "Chill" });
-        }
+            modelBuilder.Entity<CarModelEntity>().HasData(new
+            {
+                Id = 4, 
+                Name = "S63",
+                TypeEngine = "Petrol",
+                CarId = 3
+            });
+            
+            modelBuilder.Entity<CarModelEntity>().HasData(new
+            {
+                Id = 5, 
+                Name = "A5",
+                TypeEngine = "Petrol",
+                CarId = 2
+            });
+      }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }

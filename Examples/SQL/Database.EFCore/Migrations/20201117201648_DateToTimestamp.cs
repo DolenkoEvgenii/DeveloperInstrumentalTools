@@ -8,17 +8,17 @@ namespace Database.EFCore.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "Date",
-                table: "Weather",
-                newName: "TimeStamp");
+                name: "EngineType",
+                table: "CarModel",
+                newName: "TypeEngine");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "TimeStamp",
-                table: "Weather",
-                newName: "Date");
+                name: "TypeEngine",
+                table: "CarModel",
+                newName: "EngineType");
         }
     }
 }
